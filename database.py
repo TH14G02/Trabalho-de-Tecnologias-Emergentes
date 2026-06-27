@@ -9,9 +9,6 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
-
-print("DATABASE_URL:", repr(settings.DATABASE_URL))
-
 engine = create_engine(settings.DATABASE_URL)
 # conexão com o Supabase
 
