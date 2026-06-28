@@ -1,0 +1,30 @@
+{% extends "base.html" %} {% block conteudo %}
+<div class="grade">
+  {% for jogo in jogos %}
+  <article class="card">
+    <h2>{{ jogo.titulo }}</h2>
+
+    <p class="meta">{{ jogo.produtor }} · {{ jogo.ano }}</p>
+
+    <p class="genero">{{ jogo.genero }}</p>
+
+    <p class="nota">⭐ {{ jogo.nota }}</p>
+
+    <p class="status {{ 'assistido' if jogo.jogado else 'nao-assistido' }}">
+      {{ '🎮 Jogado' if jogo.jogado else '⏳ Não jogado' }}
+    </p>
+
+    <div class="acoes">
+      <a class="btn" href="/jogos/{{ jogo.id }}/editar"> Editar </a>
+
+      <form action="/jogos/{{ jogo.id }}/excluir" method="post">
+        <button class="btn btn-perigo" type="submit">Excluir</button>
+      </form>
+    </div>
+  </article>
+
+  {% else %}
+  <p>Nenhum jogo cadastrado ainda.</p>
+  {% endfor %}
+</div>
+{% endblock %}
