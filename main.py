@@ -42,21 +42,19 @@ def listar(request: Request, session: Session = Depends(get_session)):
 
 # FORMULÁRIO DE NOVO JOGO
 @app.get("/jogos/novo")
-def form_novo(request: Request):
+def form_novo(request: Request, session: Session = Depends(get_session)):
+    generos = session.scalars(select(models.Genero)).all()
     return templates.TemplateResponse(
-        request,
-        "form.html",
-        {"jogo": None},
+        request, "form.html", {"jogo": None, "generos": generos}
     )
 
 
-# CRIAR JOGO
 @app.post("/jogos")
 def criar(
     titulo: str = Form(...),
     produtor: str = Form(...),
     ano: int = Form(...),
-    genero: str = Form(...),
+    genero_id: int = Form(...),  # agora recebe o id do gênero
     nota: float = Form(0),
     jogado: bool = Form(False),
     session: Session = Depends(get_session),
@@ -65,62 +63,43 @@ def criar(
         titulo=titulo,
         produtor=produtor,
         ano=ano,
-        genero=genero,
+        genero_id=genero_id,
         nota=nota,
         jogado=jogado,
     )
-
     session.add(jogo)
     session.commit()
-
-    return RedirectResponse(
-        url="/jogos",
-        status_code=303,
-    )
+    return RedirectResponse(url="/jogos", status_code=303)
 
 
 # UPDATE — formulário de edição
 @app.get("/jogos/{jogo_id}/editar")
 def form_editar(
-    jogo_id: int,
-    request: Request,
-    session: Session = Depends(get_session),
+    jogo_id: int, request: Request, session: Session = Depends(get_session)
 ):
     jogo = session.get(models.Jogos, jogo_id)
+    generos = session.scalars(select(models.Genero)).all()  # lista p/ o <select>
     return templates.TemplateResponse(
-        request,
-        "form.html",
-        {"jogo": jogo},
+        request, "form.html", {"jogo": jogo, "generos": generos}
     )
 
 
-# UPDATE — salva as alterações
 @app.post("/jogos/{jogo_id}/editar")
 def atualizar(
     jogo_id: int,
     titulo: str = Form(...),
     produtor: str = Form(...),
     ano: int = Form(...),
-    genero: str = Form(...),
+    genero_id: int = Form(...),  # agora recebe o id do gênero
     nota: float = Form(0),
     jogado: bool = Form(False),
     session: Session = Depends(get_session),
 ):
     jogo = session.get(models.Jogos, jogo_id)
-
-    jogo.titulo = titulo
-    jogo.produtor = produtor
-    jogo.ano = ano
-    jogo.genero = genero
-    jogo.nota = nota
-    jogo.jogado = jogado
-
+    jogo.titulo, jogo.produtor, jogo.ano = titulo, produtor, ano
+    jogo.genero_id, jogo.nota, jogo.jogado = genero_id, nota, jogado
     session.commit()
-
-    return RedirectResponse(
-        url="/jogos",
-        status_code=303,
-    )
+    return RedirectResponse(url="/jogos", status_code=303)
 
 
 # DELETE — remove do banco

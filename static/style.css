@@ -1,0 +1,159 @@
+/* Estilza a base.html */
+:root {
+  --primaria: #009688; /* cor principal */
+  --primaria-escura: #00796b;
+  --perigo: #e53935; /* botão excluir */
+  --fundo: #f4f6f8;
+  --card: #ffffff;
+  --texto: #263238;
+  --sombra: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --raio: 10px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: var(--fundo);
+  color: var(--texto);
+  line-height: 1.5;
+}
+/* Estilza a base.html */
+
+/* Estiliza o cabeçalho */
+.topo {
+  background: var(--primaria);
+  color: #fff;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--sombra);
+}
+.topo h1 {
+  font-size: 1.4rem;
+}
+.topo nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 16px;
+  font-weight: 600;
+}
+.topo nav a:hover {
+  text-decoration: underline;
+}
+/* Estiliza o cabeçalho */
+
+/* Estiliza layout e grade de cards */
+.container {
+  max-width: 960px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+.grade {
+  /* grade responsiva */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  padding: 16px;
+  transition: transform 0.15s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+} /* leve animação */
+.card h2 {
+  font-size: 1.1rem;
+  color: var(--primaria-escura);
+}
+.card .meta {
+  color: #607d8b;
+  font-size: 0.9rem;
+}
+.card .nota {
+  font-weight: 700;
+}
+.card .status {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.card .status.assistido {
+  background: #e8f5e9;
+  color: #2e7d32;
+} /* verde */
+.card .status.nao-assistido {
+  background: #eceff1;
+  color: #607d8b;
+} /* cinza */
+.card .acoes {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+/* Estiliza layout e grade de cards */
+
+/* Estiliza botões e formulário */
+.btn {
+  display: inline-block;
+  background: var(--primaria);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn:hover {
+  background: var(--primaria-escura);
+}
+.btn-perigo {
+  background: var(--perigo);
+}
+.btn-perigo:hover {
+  background: #b71c1c;
+}
+
+.formulario {
+  background: var(--card);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  padding: 24px;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.formulario label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-weight: 600;
+}
+.formulario input,
+.formulario select {
+  padding: 8px;
+  border: 1px solid #cfd8dc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+.formulario .checkbox {
+  flex-direction: row;
+  align-items: center;
+}
+/* Estiliza botões e formulário */

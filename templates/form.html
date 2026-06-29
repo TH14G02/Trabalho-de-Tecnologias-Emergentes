@@ -36,16 +36,20 @@
 
   <label>
     Gênero
-    <input
-      type="text"
-      name="genero"
-      value="{{ jogo.genero if jogo else '' }}"
-      required
-    />
-  </label>
+    <select name="genero_id" required>
+        {% for g in generos %}
+        <option
+            value="{{ g.id }}"
+            {% if jogo and jogo.genero_id == g.id %}selected{% endif %}
+        >
+            {{ g.nome }}
+        </option>
+        {% endfor %}
+    </select>
+</label>
 
   <label>
-    Nota
+    Nota (0 - 10)
     <input
       type="number"
       step="0.1"
