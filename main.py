@@ -59,6 +59,7 @@ def criar(
     jogado: bool = Form(False),
     session: Session = Depends(get_session),
 ):
+
     jogo = models.Jogos(
         titulo=titulo,
         produtor=produtor,
@@ -67,9 +68,23 @@ def criar(
         nota=nota,
         jogado=jogado,
     )
-    session.add(jogo)
-    session.commit()
-    return RedirectResponse(url="/jogos", status_code=303)
+
+    jogos_existentes = session.query(models.Jogos.titulo, models.Jogos.ano, models.Jogos.produtor).all()
+    existe: bool = False
+    for titulo_comparado,ano_comparado,produtor_comparado in jogos_existentes:
+        if titulo_comparado == titulo:
+         if ano == ano_comparado:
+          if produtor == produtor_comparado:
+            existe = True
+    if existe:
+        for i in range(0,100):
+            print(i)
+        flash(request, "Usuário criado com sucesso!", "success")
+        return RedirectResponse(url="/jogos", status_code=303)
+    elif not existe:
+        session.add(jogo)
+        session.commit()
+        return RedirectResponse(url="/jogos", status_code=303)
 
 
 # UPDATE — formulário de edição
