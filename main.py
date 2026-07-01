@@ -7,6 +7,8 @@ from fastapi.templating import Jinja2Templates
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from starlette.middleware.sessions import SessionMiddleware
+
 import models
 from database import Base, engine, get_session
 
@@ -18,6 +20,11 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
+
+app.add_middleware(
+    SessionMiddleware,
+    secret_key="TESTE"
+)
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
@@ -33,10 +40,14 @@ def home():
 @app.get("/jogos")
 def listar(request: Request, session: Session = Depends(get_session)):
     jogos = session.scalars(select(models.Jogos)).all()
+
+    flash = request.session.pop("flash", None)
+    
     return templates.TemplateResponse(
         request,
         "lista.html",
-        {"jogos": jogos},
+        {"jogos": jogos,
+            "flash":flash},
     )
 
 
@@ -51,6 +62,7 @@ def form_novo(request: Request, session: Session = Depends(get_session)):
 
 @app.post("/jogos")
 def criar(
+    request: Request,
     titulo: str = Form(...),
     produtor: str = Form(...),
     ano: int = Form(...),
@@ -69,22 +81,30 @@ def criar(
         jogado=jogado,
     )
 
-    jogos_existentes = session.query(models.Jogos.titulo, models.Jogos.ano, models.Jogos.produtor).all()
-    existe: bool = False
-    for titulo_comparado,ano_comparado,produtor_comparado in jogos_existentes:
-        if titulo_comparado == titulo:
-         if ano == ano_comparado:
-          if produtor == produtor_comparado:
-            existe = True
-    if existe:
+    jogo_existente = session.query(models.Jogos).filter_by(titulo=titulo,ano=ano,produtor=produtor).first()
+    
+    
+    if jogo_existente:
         for i in range(0,100):
             print(i)
-        flash(request, "Usuário criado com sucesso!", "success")
+        request.session["flash"] = {
+            "categoria": "error",
+            "mensagem": "Esse jogo já existe.",
+            "color":"Red"}
+        
         return RedirectResponse(url="/jogos", status_code=303)
-    elif not existe:
-        session.add(jogo)
-        session.commit()
-        return RedirectResponse(url="/jogos", status_code=303)
+            
+        
+        
+    elif not jogo_existente:
+     session.add(jogo)
+     session.commit()
+     request.session["flash"] = {
+            "categoria": "success",
+            "mensagem": "Jogo cadastrado com sucesso!",
+            "color" : "Green"
+        }
+     return RedirectResponse(url="/jogos", status_code=303)
 
 
 # UPDATE — formulário de edição

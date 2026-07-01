@@ -8,16 +8,28 @@
   </head>
   <body>
     <header class="topo">
-      <div class="logo">CATÁLOGO<span>JOGOS</span></div>
+      <div class="logo">CATÁLOGO<span> JOGOS</span></div>
       <nav>
         <a href="/jogos">Início</a>
         <a href="/jogos/novo">+ Novo jogo</a>
       </nav>
     </header>
-
+ 
     <section class="hero">
       <h1>Sua biblioteca de jogos</h1>
       <p>Acompanhe o que você já jogou, suas notas e descubra o que falta na lista.</p>
+      {% if flash %}
+      <style> 
+        .AVISO_POS_FORM{
+            font-size: 30px;
+            color: {{flash.color}};
+            font-weight: bold;
+        }
+      </style>
+      <div class="AVISO_POS_FORM">
+          {{ flash.mensagem }}
+      </div>
+      {% endif %}
     </section>
 
     <main class="container">
