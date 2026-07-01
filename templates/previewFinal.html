@@ -1,3 +1,10 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catálogo de Jogos</title>
+    <style>
 /* Estiliza o catálogo de jogos — identidade visual inspirada na Steam, em tons de vermelho */
 :root {
   --bg: #2a1414;
@@ -301,3 +308,88 @@ body {
     justify-content: flex-start;
   }
 }
+
+</style>
+  </head>
+  <body>
+    <header class="topo">
+      <div class="logo">CATÁLOGO<span>JOGOS</span></div>
+      <nav>
+        <a href="/jogos">Início</a>
+        <a href="/jogos/novo">+ Novo jogo</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h1>Sua biblioteca de jogos</h1>
+      <p>Acompanhe o que você já jogou, suas notas e descubra o que falta na lista.</p>
+    </section>
+
+    <main class="container">
+      
+<div class="barra-secao">
+  <h2>Todos os jogos</h2>
+  <a class="btn-novo" href="#">+ Novo jogo</a>
+</div>
+<div class="grade">
+  <article class="card">
+    <div class="capa">🎮</div>
+    <div class="info">
+      <h3>The Legend of Zelda: TOTK</h3>
+      <p class="meta">Nintendo · 2023</p>
+      <div class="tags"><span class="tag">Aventura</span></div>
+    </div>
+    <div class="nota"><span class="valor">9.8</span><span class="label">Nota</span></div>
+    <div class="status jogado">🎮 Jogado</div>
+    <div class="acoes">
+      <a class="btn btn-editar" href="#">Editar</a>
+      <form action="#" method="post"><button class="btn btn-excluir" type="submit">Excluir</button></form>
+    </div>
+  </article>
+  <article class="card">
+    <div class="capa">🎮</div>
+    <div class="info">
+      <h3>Elden Ring</h3>
+      <p class="meta">FromSoftware · 2022</p>
+      <div class="tags"><span class="tag">RPG de Ação</span></div>
+    </div>
+    <div class="nota"><span class="valor">9.5</span><span class="label">Nota</span></div>
+    <div class="status nao-jogado">⏳ Não jogado</div>
+    <div class="acoes">
+      <a class="btn btn-editar" href="#">Editar</a>
+      <form action="#" method="post"><button class="btn btn-excluir" type="submit">Excluir</button></form>
+    </div>
+  </article>
+  <article class="card">
+    <div class="capa">🎮</div>
+    <div class="info">
+      <h3>Stardew Valley</h3>
+      <p class="meta">ConcernedApe · 2016</p>
+      <div class="tags"><span class="tag">Simulação</span></div>
+    </div>
+    <div class="nota"><span class="valor">9.0</span><span class="label">Nota</span></div>
+    <div class="status jogado">🎮 Jogado</div>
+    <div class="acoes">
+      <a class="btn btn-editar" href="#">Editar</a>
+      <form action="#" method="post"><button class="btn btn-excluir" type="submit">Excluir</button></form>
+    </div>
+  </article>
+  <article class="card">
+    <div class="capa">🎮</div>
+    <div class="info">
+      <h3>Hades</h3>
+      <p class="meta">Supergiant Games · 2020</p>
+      <div class="tags"><span class="tag">Roguelike</span></div>
+    </div>
+    <div class="nota"><span class="valor">9.2</span><span class="label">Nota</span></div>
+    <div class="status nao-jogado">⏳ Não jogado</div>
+    <div class="acoes">
+      <a class="btn btn-editar" href="#">Editar</a>
+      <form action="#" method="post"><button class="btn btn-excluir" type="submit">Excluir</button></form>
+    </div>
+  </article>
+</div>
+
+    </main>
+  </body>
+</html>

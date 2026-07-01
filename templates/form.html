@@ -1,4 +1,8 @@
 {% extends "base.html" %} {% block conteudo %}
+<div class="barra-secao">
+  <h2>{% if jogo %}Editar jogo{% else %}Novo jogo{% endif %}</h2>
+</div>
+
 <form
   class="formulario"
   method="post"
@@ -76,6 +80,6 @@
     Jogado
   </label>
 
-  <button class="btn" type="submit">Salvar</button>
+  <button class="btn btn-editar" type="submit">Salvar</button>
 </form>
 {% endblock %}

@@ -1,24 +1,36 @@
 {% extends "base.html" %} {% block conteudo %}
+<div class="barra-secao">
+  <h2>Todos os jogos</h2>
+  <a class="btn-novo" href="/jogos/novo">+ Novo jogo</a>
+</div>
+
 <div class="grade">
   {% for jogo in jogos %}
   <article class="card">
-    <h2>{{ jogo.titulo }}</h2>
+    <div class="capa">🎮</div>
 
-    <p class="meta">{{ jogo.produtor }} · {{ jogo.ano }}</p>
+    <div class="info">
+      <h3>{{ jogo.titulo }}</h3>
+      <p class="meta">{{ jogo.produtor }} · {{ jogo.ano }}</p>
+      <div class="tags">
+        <span class="tag">{{ jogo.genero.nome }}</span>
+      </div>
+    </div>
 
-    <p class="genero">{{ jogo.genero.nome }}</p>
+    <div class="nota">
+      <span class="valor">{{ jogo.nota }}</span>
+      <span class="label">Nota</span>
+    </div>
 
-    <p class="nota">⭐ {{ jogo.nota }}</p>
-
-    <p class="status {{ 'assistido' if jogo.jogado else 'nao-assistido' }}">
+    <div class="status {{ 'jogado' if jogo.jogado else 'nao-jogado' }}">
       {{ '🎮 Jogado' if jogo.jogado else '⏳ Não jogado' }}
-    </p>
+    </div>
 
     <div class="acoes">
-      <a class="btn" href="/jogos/{{ jogo.id }}/editar"> Editar </a>
+      <a class="btn btn-editar" href="/jogos/{{ jogo.id }}/editar">Editar</a>
 
       <form action="/jogos/{{ jogo.id }}/excluir" method="post">
-        <button class="btn btn-perigo" type="submit">Excluir</button>
+        <button class="btn btn-excluir" type="submit">Excluir</button>
       </form>
     </div>
   </article>
