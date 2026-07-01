@@ -215,7 +215,7 @@ body {
   gap: 6px;
 }
 
-/* ===== Botões ===== */
+/* ===== Botoes ===== */
 .btn {
   display: inline-block;
   border: none;
@@ -244,7 +244,7 @@ body {
   background: linear-gradient(180deg, var(--perigo) 0%, #7a1414 100%);
 }
 
-/* ===== Formulário ===== */
+/* ===== Formulario ===== */
 .formulario {
   background: var(--painel);
   border: 1px solid #000;
@@ -301,3 +301,5 @@ body {
     justify-content: flex-start;
   }
 }
+
+
