@@ -115,8 +115,10 @@ A documentação completa do projeto está na pasta [`docs/`](docs/):
 
 ## Integrantes
 
-> Insira aqui o nome dos integrantes do grupo.
+Thiago Emanuel Cardozo Rodrigues.
+Guilherma Victor Chaves Silva.
+Brian Italo Sousa de Oliveira
 
 ---
 
-*Instituto Federal do Piauí — Campus Piripiri · Tecnologias Emergentes · 2025*
+*Instituto Federal do Piauí — Campus Piripiri · Tecnologias Emergentes · 2026*
