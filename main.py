@@ -121,6 +121,7 @@ def form_editar(
 
 @app.post("/jogos/{jogo_id}/editar")
 def atualizar(
+    request: Request,
     jogo_id: int,
     titulo: str = Form(...),
     produtor: str = Form(...),
@@ -134,12 +135,17 @@ def atualizar(
     jogo.titulo, jogo.produtor, jogo.ano = titulo, produtor, ano
     jogo.genero_id, jogo.nota, jogo.jogado = genero_id, nota, jogado
     session.commit()
+    request.session["flash"] = {
+        "categoria": "editar",
+        "mensagem": "jogo editado.",
+        "color":"Yellow"}
     return RedirectResponse(url="/jogos", status_code=303)
 
 
 # DELETE — remove do banco
 @app.post("/jogos/{jogo_id}/excluir")
 def excluir(
+    request:Request,
     jogo_id: int,
     session: Session = Depends(get_session),
 ):
@@ -147,7 +153,10 @@ def excluir(
 
     session.delete(jogo)
     session.commit()
-
+    request.session["flash"] = {
+        "categoria": "excluir",
+        "mensagem": "Jogo excluido.",
+        "color":"White"}
     return RedirectResponse(
         url="/jogos",
         status_code=303,
