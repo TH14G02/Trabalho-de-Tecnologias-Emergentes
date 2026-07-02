@@ -14,21 +14,22 @@
         <a href="/jogos/novo">+ Novo jogo</a>
       </nav>
     </header>
- 
+
     <section class="hero">
       <h1>Sua biblioteca de jogos</h1>
-      <p>Acompanhe o que você já jogou, suas notas e descubra o que falta na lista.</p>
+      <p>
+        Acompanhe o que você já jogou, suas notas e descubra o que falta na
+        lista.
+      </p>
       {% if flash %}
-      <style> 
-      .AVISO_POS_FORM{
-          font-size: 30px;
-          color: {{flash.color}};
-          font-weight: bold;
-      }
+      <style>
+        .AVISO_POS_FORM{
+            font-size: 30px;
+            color: {{flash.color}};
+            font-weight: bold;
+        }
       </style>
-      <div class="AVISO_POS_FORM">
-          {{ flash.mensagem }}
-      </div>
+      <div class="AVISO_POS_FORM">{{ flash.mensagem }}</div>
       {% endif %}
     </section>
 
@@ -38,4 +39,3 @@
     </main>
   </body>
 </html>
-

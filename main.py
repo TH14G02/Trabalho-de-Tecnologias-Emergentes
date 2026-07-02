@@ -157,7 +157,7 @@ def excluir(
     request.session["flash"] = {
         "categoria": "excluir",
         "mensagem": "Jogo excluido.",
-        "color":"White"}
+        "color":"Orange"}
     return RedirectResponse(
         url="/jogos",
         status_code=303,

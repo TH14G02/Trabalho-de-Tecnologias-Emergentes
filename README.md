@@ -6,6 +6,26 @@ O sistema permite cadastrar, visualizar, editar e excluir jogos, com suporte a c
 
 ---
 
+## Screenshots
+
+**Lista vazia — estado inicial da aplicação**
+
+![Lista vazia](docs/images/lista-vazia.png)
+
+**Lista de jogos cadastrados**
+
+![Lista de jogos](docs/images/lista-jogos.png)
+
+**Formulário — cadastrar novo jogo**
+
+![Novo jogo](docs/images/form-novo.png)
+
+**Formulário — editar jogo existente**
+
+![Editar jogo](docs/images/form-editar.png)
+
+---
+
 ## Tecnologias
 
 | Camada      | Tecnologia                       |
@@ -80,6 +100,7 @@ Acesse em: **http://localhost:8000**
 │   ├── form.html        # Formulário de criação e edição
 │   └── lista.html       # Listagem de jogos
 └── docs/                # Documentação técnica
+    ├── images/          # Screenshots da aplicação
     ├── requisitos.md
     ├── arquitetura.md
     ├── banco_de_dados.md
@@ -117,7 +138,7 @@ A documentação completa do projeto está na pasta [`docs/`](docs/):
 
 Thiago Emanuel Cardozo Rodrigues.
 Guilherma Victor Chaves Silva.
-Brian Italo Sousa de Oliveira
+Brian Italo Sousa de Oliveira.
 
 ---
 
