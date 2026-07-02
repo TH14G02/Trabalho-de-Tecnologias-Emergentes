@@ -69,6 +69,7 @@ def criar(
     genero_id: int = Form(...),  # agora recebe o id do gênero
     nota: float = Form(0),
     jogado: bool = Form(False),
+    imagem: str = Form(...),
     session: Session = Depends(get_session),
 ):
 
@@ -79,6 +80,7 @@ def criar(
         genero_id=genero_id,
         nota=nota,
         jogado=jogado,
+        imagem=imagem
     )
 
     jogo_existente = session.query(models.Jogos).filter_by(titulo=titulo,ano=ano,produtor=produtor).first()
@@ -129,11 +131,12 @@ def atualizar(
     genero_id: int = Form(...),  # agora recebe o id do gênero
     nota: float = Form(0),
     jogado: bool = Form(False),
+    imagem: str = Form(...),
     session: Session = Depends(get_session),
 ):
     jogo = session.get(models.Jogos, jogo_id)
     jogo.titulo, jogo.produtor, jogo.ano = titulo, produtor, ano
-    jogo.genero_id, jogo.nota, jogo.jogado = genero_id, nota, jogado
+    jogo.genero_id, jogo.nota, jogo.jogado,jogo.imagem= genero_id, nota, jogado, imagem
     session.commit()
     request.session["flash"] = {
         "categoria": "editar",

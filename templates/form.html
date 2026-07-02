@@ -79,8 +79,16 @@
     />
     Jogado
   </label>
-
+  <label>
+  Imagem
+    <input
+      type="text"
+      name="imagem"
+      value="{{ jogo.imagem if jogo else '' }}"
+      required
+    />
   <button class="btn btn-editar" type="submit">Salvar</button>
+  </label>
 </form>
 {% endblock %}
 
