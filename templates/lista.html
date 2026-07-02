@@ -1,13 +1,16 @@
 {% extends "base.html" %} {% block conteudo %}
 <div class="barra-secao">
   <h2>Todos os jogos</h2>
-  <a class="btn-novo" href="/jogos/novo">+ Novo jogo</a>
 </div>
 
 <div class="grade">
   {% for jogo in jogos %}
   <article class="card">
-    <div class="capa">🎮</div>
+    {% if jogo.imagem %} 
+     <img src="{{ jogo.imagem }}" class="jogo_imagem" alt="{{ jogo.titulo }}">
+    {% else %}
+      <div class="capa">🎮</div>
+    {% endif %}
 
     <div class="info">
       <h3>{{ jogo.titulo }}</h3>

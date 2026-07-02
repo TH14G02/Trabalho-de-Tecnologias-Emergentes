@@ -6,7 +6,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-
+from typing import Optional
 from starlette.middleware.sessions import SessionMiddleware
 
 import models
@@ -69,7 +69,7 @@ def criar(
     genero_id: int = Form(...),  # agora recebe o id do gênero
     nota: float = Form(0),
     jogado: bool = Form(False),
-    imagem: str = Form(...),
+    imagem: Optional[str] = Form(None),
     session: Session = Depends(get_session),
 ):
 
@@ -80,15 +80,13 @@ def criar(
         genero_id=genero_id,
         nota=nota,
         jogado=jogado,
-        imagem=imagem
+        imagem=imagem or None
     )
 
     jogo_existente = session.query(models.Jogos).filter_by(titulo=titulo,ano=ano,produtor=produtor).first()
     
     
     if jogo_existente:
-        for i in range(0,100):
-            print(i)
         request.session["flash"] = {
             "categoria": "error",
             "mensagem": "Esse jogo já existe.",
@@ -131,7 +129,7 @@ def atualizar(
     genero_id: int = Form(...),  # agora recebe o id do gênero
     nota: float = Form(0),
     jogado: bool = Form(False),
-    imagem: str = Form(...),
+    imagem: Optional[str] = Form(None),
     session: Session = Depends(get_session),
 ):
     jogo = session.get(models.Jogos, jogo_id)

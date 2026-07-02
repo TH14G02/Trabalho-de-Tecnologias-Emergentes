@@ -2,7 +2,7 @@
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from database import Base
-
+from typing import Optional
 
 class Genero(Base):
     __tablename__ = "generos"
@@ -22,4 +22,4 @@ class Jogos(Base):
     genero: Mapped["Genero"] = relationship(back_populates="jogos")
     nota: Mapped[float] = mapped_column(default=0)  # 0 a 10
     jogado: Mapped[bool] = mapped_column(default=False)
-    imagem: Mapped[str] = mapped_column(nullable=True)
+    imagem: Mapped[Optional[str]] = mapped_column(nullable=True)

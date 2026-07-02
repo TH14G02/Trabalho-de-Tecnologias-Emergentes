@@ -146,6 +146,17 @@ body {
   font-size: 1.5rem;
 }
 
+.jogo_imagem{
+  height: 80px;
+  width: 80px;
+  border-radius: var(--raio);
+  background: linear-gradient(135deg, var(--destaque-escuro), var(--bg-escuro));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
 .info h3 {
   color: var(--texto-claro);
   font-size: 1rem;
